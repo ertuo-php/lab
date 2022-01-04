@@ -10,6 +10,10 @@ use Ertuo\Lab\Benchmark_Bitbucket_Ertuo_Array;
 use function file_put_contents;
 use function var_export;
 
+/**
+* @Revs(4000)
+* @Iterations(5)
+*/
 abstract class Benchmark_Ertuo_UnfoldedTree extends Benchmark_Bitbucket_Ertuo_Array
 {
 	protected $routeFullClass;
