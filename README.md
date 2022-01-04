@@ -48,10 +48,12 @@ php vendor/bin/phpbench run Benchmark_Bitbucket_FastRoute_Cached_GroupPosBased.p
 php vendor/bin/phpbench run Benchmark_Bitbucket_FastRoute_Cached_MarkBased.php --report=short
 ```
 
-To compare results run the two Ertuo benchmarks, one using generators to declare the routes, and another one using just plain arrays.
+To compare results run the Ertuo benchmarks, one using generators to declare
+the routes, another one using just plain arrays and finally one with unfolded routes.
 ```
 php vendor/bin/phpbench run lab/Benchmark_Bitbucket_Ertuo_Generator.php --report=short
 php vendor/bin/phpbench run lab/Benchmark_Bitbucket_Ertuo_Array.php --report=short
+php vendor/bin/phpbench run lab/Benchmark_Bitbucket_Ertuo_Unfolded.php --report=short
 ```
 
 ### Benchmark Results
@@ -69,60 +71,64 @@ with PHP version 7.4.26, xdebug ❌, opcache ✔
 #### PHP 7.4
 
 ```
-Benchmark_Bitbucket_Ertuo_Array
+Benchmark_Bitbucket_Ertuo_Unfolded
 +--------------+----------+----------+----------+----------+---------+--------+
 | subject      | best     | mean     | mode     | worst    | stdev   | rstdev |
 +--------------+----------+----------+----------+----------+---------+--------+
-| benchSetup   | 2.423μs  | 2.477μs  | 2.441μs  | 2.585μs  | 0.062μs | ±2.52% |
-| benchLast    | 22.988μs | 23.082μs | 23.039μs | 23.263μs | 0.095μs | ±0.41% |
-| benchLongest | 42.443μs | 42.740μs | 42.783μs | 42.973μs | 0.172μs | ±0.40% |
-| benchTotal   | 31.208μs | 31.307μs | 31.292μs | 31.428μs | 0.071μs | ±0.23% |
+| benchSetup   | 1.414μs  | 1.484μs  | 1.500μs  | 1.518μs  | 0.036μs | ±2.43% |
+| benchLast    | 7.672μs  | 7.795μs  | 7.707μs  | 8.072μs  | 0.155μs | ±1.99% |
+| benchLongest | 14.914μs | 15.440μs | 15.675μs | 15.748μs | 0.341μs | ±2.21% |
+| benchTotal   | 8.838μs  | 9.375μs  | 9.230μs  | 10.121μs | 0.428μs | ±4.56% |
 +--------------+----------+----------+----------+----------+---------+--------+
-
+```
+```
 Benchmark_Bitbucket_FastRoute_Cached_MarkBased
 +--------------+----------+----------+----------+----------+---------+--------+
 | subject      | best     | mean     | mode     | worst    | stdev   | rstdev |
 +--------------+----------+----------+----------+----------+---------+--------+
-| benchSetup   | 5.720μs  | 5.786μs  | 5.764μs  | 5.888μs  | 0.057μs | ±0.99% |
-| benchLast    | 21.155μs | 21.434μs | 21.292μs | 22.020μs | 0.304μs | ±1.42% |
-| benchLongest | 20.185μs | 20.546μs | 20.514μs | 20.960μs | 0.268μs | ±1.31% |
-| benchTotal   | 21.705μs | 21.774μs | 21.737μs | 21.893μs | 0.071μs | ±0.33% |
+| benchSetup   | 6.495μs  | 6.856μs  | 6.990μs  | 7.140μs  | 0.243μs | ±3.54% |
+| benchLast    | 24.535μs | 25.119μs | 25.298μs | 25.495μs | 0.361μs | ±1.44% |
+| benchLongest | 23.875μs | 24.223μs | 23.958μs | 24.778μs | 0.374μs | ±1.54% |
+| benchTotal   | 25.095μs | 25.740μs | 25.875μs | 26.153μs | 0.354μs | ±1.37% |
 +--------------+----------+----------+----------+----------+---------+--------+
-
+```
+```
 Benchmark_Bitbucket_Symfony_Compiled
-+--------------+----------+----------+----------+----------+---------+--------+
-| subject      | best     | mean     | mode     | worst    | stdev   | rstdev |
-+--------------+----------+----------+----------+----------+---------+--------+
-| benchSetup   | 8.685μs  | 8.756μs  | 8.715μs  | 8.863μs  | 0.068μs | ±0.78% |
-| benchLast    | 20.708μs | 20.797μs | 20.745μs | 21.000μs | 0.108μs | ±0.52% |
-| benchLongest | 21.330μs | 21.517μs | 21.626μs | 21.665μs | 0.149μs | ±0.69% |
-| benchTotal   | 21.008μs | 21.157μs | 21.237μs | 21.315μs | 0.130μs | ±0.61% |
-+--------------+----------+----------+----------+----------+---------+--------+
++--------------+----------+----------+----------+----------+---------+---------+
+| subject      | best     | mean     | mode     | worst    | stdev   | rstdev  |
++--------------+----------+----------+----------+----------+---------+---------+
+| benchSetup   | 10.708μs | 11.714μs | 11.104μs | 12.888μs | 0.906μs | ±7.73%  |
+| benchLast    | 32.765μs | 37.511μs | 34.700μs | 43.398μs | 4.177μs | ±11.13% |
+| benchLongest | 32.358μs | 37.661μs | 33.555μs | 54.205μs | 8.303μs | ±22.05% |
+| benchTotal   | 32.488μs | 34.399μs | 33.920μs | 36.870μs | 1.487μs | ±4.32%  |
++--------------+----------+----------+----------+----------+---------+---------+
 ```
 
 #### PHP 8.0
 
 ```
-Benchmark_Bitbucket_Ertuo_Array
-+--------------+----------+----------+----------+----------+---------+--------+
-| subject      | best     | mean     | mode     | worst    | stdev   | rstdev |
-+--------------+----------+----------+----------+----------+---------+--------+
-| benchSetup   | 4.283μs  | 4.422μs  | 4.324μs  | 4.588μs  | 0.134μs | ±3.02% |
-| benchLast    | 37.338μs | 38.293μs | 37.585μs | 39.555μs | 0.975μs | ±2.55% |
-| benchLongest | 63.938μs | 64.568μs | 64.233μs | 65.673μs | 0.634μs | ±0.98% |
-| benchTotal   | 49.703μs | 50.232μs | 50.169μs | 50.805μs | 0.367μs | ±0.73% |
-+--------------+----------+----------+----------+----------+---------+--------+
-
+Benchmark_Bitbucket_Ertuo_Unfolded
++--------------+----------+----------+----------+----------+---------+---------+
+| subject      | best     | mean     | mode     | worst    | stdev   | rstdev  |
++--------------+----------+----------+----------+----------+---------+---------+
+| benchSetup   | 1.672μs  | 1.836μs  | 1.920μs  | 2.011μs  | 0.140μs | ±7.60%  |
+| benchLast    | 7.034μs  | 7.500μs  | 7.664μs  | 7.817μs  | 0.303μs | ±4.04%  |
+| benchLongest | 14.012μs | 16.479μs | 16.034μs | 18.932μs | 1.718μs | ±10.43% |
+| benchTotal   | 9.023μs  | 10.132μs | 9.839μs  | 11.748μs | 0.887μs | ±8.75%  |
++--------------+----------+----------+----------+----------+---------+---------+
+```
+```
 Benchmark_Bitbucket_FastRoute_Cached_MarkBased
-+--------------+----------+----------+----------+----------+---------+--------+
-| subject      | best     | mean     | mode     | worst    | stdev   | rstdev |
-+--------------+----------+----------+----------+----------+---------+--------+
-| benchSetup   | 8.225μs  | 8.432μs  | 8.472μs  | 8.595μs  | 0.124μs | ±1.47% |
-| benchLast    | 32.183μs | 32.756μs | 32.407μs | 33.820μs | 0.614μs | ±1.87% |
-| benchLongest | 31.363μs | 31.773μs | 31.888μs | 31.938μs | 0.220μs | ±0.69% |
-| benchTotal   | 33.425μs | 33.707μs | 33.672μs | 34.043μs | 0.205μs | ±0.61% |
-+--------------+----------+----------+----------+----------+---------+--------+
-
++--------------+----------+----------+----------+----------+---------+---------+
+| subject      | best     | mean     | mode     | worst    | stdev   | rstdev  |
++--------------+----------+----------+----------+----------+---------+---------+
+| benchSetup   | 6.958μs  | 7.964μs  | 7.534μs  | 9.453μs  | 0.883μs | ±11.08% |
+| benchLast    | 31.823μs | 35.079μs | 34.415μs | 39.435μs | 2.724μs | ±7.77%  |
+| benchLongest | 31.115μs | 34.052μs | 32.962μs | 38.210μs | 2.654μs | ±7.79%  |
+| benchTotal   | 31.705μs | 34.923μs | 35.833μs | 37.073μs | 1.878μs | ±5.38%  |
++--------------+----------+----------+----------+----------+---------+---------+
+```
+```
 Benchmark_Bitbucket_Symfony_Compiled
 +--------------+----------+----------+----------+----------+---------+--------+
 | subject      | best     | mean     | mode     | worst    | stdev   | rstdev |
@@ -132,14 +138,4 @@ Benchmark_Bitbucket_Symfony_Compiled
 | benchLongest | 35.443μs | 35.645μs | 35.505μs | 36.205μs | 0.284μs | ±0.80% |
 | benchTotal   | 35.640μs | 35.792μs | 35.701μs | 35.965μs | 0.135μs | ±0.38% |
 +--------------+----------+----------+----------+----------+---------+--------+
-```
-
-### Comparing with Fully Unfolded Tree
-
-One assumption I wanted to benchmark was if the routing process will be quicker if we start with a fully unfolded tree instead of progressively exploring it at runtime.
-
-To test this I've added two more `Route` classes that use the output from `Route::toArray()` as their route definitions. Both classes are slightly different in how they move down the routes tree with one using references and the other creating new objects.
-```
-php vendor/bin/phpbench run lab/Benchmark_Bitbucket_Ertuo_UnfoldedTree_Copy.php --report=short
-php vendor/bin/phpbench run lab/Benchmark_Bitbucket_Ertuo_UnfoldedTree_Ref.php --report=short
 ```
