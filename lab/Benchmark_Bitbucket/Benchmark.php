@@ -9,7 +9,6 @@ use PHPUnit\Framework\Assert;
 *
 * @see https://developer.atlassian.com/bitbucket/api/2/reference/resource/
 *
-* @Warmup(2)
 * @Revs(4000)
 * @Iterations(5)
 */
