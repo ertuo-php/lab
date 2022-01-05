@@ -9,7 +9,7 @@ use PHPUnit\Framework\Assert;
 *
 * @see https://developer.atlassian.com/bitbucket/api/2/reference/resource/
 *
-* @Revs(400)
+* @Revs(4000)
 * @Iterations(5)
 */
 abstract class Benchmark
