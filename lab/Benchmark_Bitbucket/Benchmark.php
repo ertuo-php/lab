@@ -9,7 +9,8 @@ use PHPUnit\Framework\Assert;
 *
 * @see https://developer.atlassian.com/bitbucket/api/2/reference/resource/
 *
-* @Revs(400)
+* @Warmup(2)
+* @Revs(4000)
 * @Iterations(5)
 */
 abstract class Benchmark
@@ -150,7 +151,7 @@ abstract class Benchmark
 			['route' => '/repositories/john/paul/hooks/george', 'result' => ['_route' => 'repositories_workspace_repo_slug_hooks_uid']],
 			['route' => '/repositories/ringo/john/issues', 'result' => ['_route' => 'repositories_workspace_repo_slug_issues']],
 			['route' => '/repositories/paul/george/issues/export', 'result' => ['_route' => 'repositories_workspace_repo_slug_issues_export']],
-			['route' => '/repositories/ringo/john/issues/export/paul-issues-george.zip', 'result' => ['_route' => 'repositories_workspace_repo_slug_issues_export_repo_name_issues_task_id_zip']],
+			// ['route' => '/repositories/ringo/john/issues/export/paul-issues-george.zip', 'result' => ['_route' => 'repositories_workspace_repo_slug_issues_export_repo_name_issues_task_id_zip']],
 			['route' => '/repositories/ringo/john/issues/import', 'result' => ['_route' => 'repositories_workspace_repo_slug_issues_import']],
 			['route' => '/repositories/paul/george/issues/ringo', 'result' => ['_route' => 'repositories_workspace_repo_slug_issues_issue_id']],
 			['route' => '/repositories/john/paul/issues/george/attachments', 'result' => ['_route' => 'repositories_workspace_repo_slug_issues_issue_id_attachments']],
